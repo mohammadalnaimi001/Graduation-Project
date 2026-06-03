@@ -517,6 +517,49 @@ with tabs[0]:
         fig_corr = px.imshow(corr, text_auto=True, title="Correlation Heatmap", template="plotly_dark", color_continuous_scale="RdBu")
         st.plotly_chart(fig_corr, use_container_width=True)
 
+    # ── Linear Regression ──────────────────────────────────────────────────────
+    st.markdown('<div class="section-title">📉 Linear Regression</div>', unsafe_allow_html=True)
+    if len(numeric_cols) >= 2:
+        lr_c1, lr_c2 = st.columns(2)
+        with lr_c1:
+            lr_x = st.selectbox("X — Independent Variable", options=numeric_cols, key="lr_x")
+        with lr_c2:
+            lr_y_opts = [c for c in numeric_cols if c != lr_x]
+            lr_y = st.selectbox("Y — Dependent Variable", options=lr_y_opts, key="lr_y")
+
+        lr_data = filtered_df[[lr_x, lr_y]].dropna()
+        if len(lr_data) >= 2:
+            x_vals = lr_data[lr_x].values.astype(float)
+            y_vals = lr_data[lr_y].values.astype(float)
+
+            coeffs = np.polyfit(x_vals, y_vals, 1)
+            slope, intercept = coeffs
+            y_pred = np.polyval(coeffs, x_vals)
+            ss_res = np.sum((y_vals - y_pred) ** 2)
+            ss_tot = np.sum((y_vals - np.mean(y_vals)) ** 2)
+            r_squared = 1.0 - ss_res / ss_tot if ss_tot != 0 else 0.0
+
+            rm1, rm2, rm3 = st.columns(3)
+            rm1.metric("R² Score", f"{r_squared:.4f}")
+            rm2.metric("Slope", f"{slope:.4f}")
+            rm3.metric("Intercept", f"{intercept:.4f}")
+            st.caption(f"Equation: **{lr_y} = {slope:.4f} × {lr_x} + ({intercept:.4f})**")
+
+            x_line = np.linspace(x_vals.min(), x_vals.max(), 300)
+            y_line = slope * x_line + intercept
+            fig_lr = px.scatter(lr_data, x=lr_x, y=lr_y, template="plotly_dark",
+                                title=f"Linear Regression: {lr_x} → {lr_y}", opacity=0.55)
+            fig_lr.add_trace(go.Scatter(
+                x=x_line, y=y_line, mode="lines",
+                name=f"Fit (R²={r_squared:.3f})",
+                line=dict(color="#F2C811", width=2.5),
+            ))
+            st.plotly_chart(fig_lr, use_container_width=True)
+        else:
+            st.warning("Not enough data points for regression after removing nulls.")
+    else:
+        st.info("Need at least 2 numeric columns for linear regression.")
+
     if date_col and date_col in filtered_df.columns and price_col and price_col in filtered_df.columns:
         ts_df = filtered_df.copy()
         ts_df[date_col] = pd.to_datetime(ts_df[date_col], errors="coerce")
@@ -590,10 +633,21 @@ with tabs[1]:
 
     after_df = st.session_state.datasets[active_name]["cleaned"]
     after = get_stats(after_df)
+
+    st.markdown("#### After Cleaning")
+    rows_removed = before["rows"] - after["rows"]
+    missing_removed = before["missing"] - after["missing"]
+    dups_removed = before["duplicates"] - after["duplicates"]
+
+    if rows_removed > 0:
+        st.success(f"✅ **{after['rows']:,} rows remaining** — {rows_removed:,} rows removed during cleaning.")
+    elif rows_removed == 0:
+        st.info(f"ℹ️ **{after['rows']:,} rows remaining** — no rows were removed (missing values were filled).")
+
     a1, a2, a3, a4 = st.columns(4)
-    a1.metric("Rows After", after["rows"], delta=after["rows"] - before["rows"])
-    a2.metric("Missing After", after["missing"], delta=after["missing"] - before["missing"])
-    a3.metric("Duplicates After", after["duplicates"], delta=after["duplicates"] - before["duplicates"])
+    a1.metric("Rows After", f"{after['rows']:,}", delta=f"-{rows_removed:,} rows" if rows_removed > 0 else "No change", delta_color="off")
+    a2.metric("Missing After", after["missing"], delta=-missing_removed, delta_color="inverse")
+    a3.metric("Duplicates After", after["duplicates"], delta=-dups_removed, delta_color="inverse")
     a4.metric("Columns After", after["cols"])
 
     st.download_button(
@@ -1053,8 +1107,16 @@ with tabs[5]:
             st.info("Need at least 2 numeric columns for scatter.")
 
     with row2_c2:
-        donut_col = city_col if city_col and city_col in pbi_df.columns else (cat_cols[0] if cat_cols else None)
-        if donut_col:
+        all_donut_options = cat_cols + [c for c in num_cols if c not in cat_cols]
+        default_donut = city_col if city_col and city_col in pbi_df.columns else (cat_cols[0] if cat_cols else None)
+        default_idx = all_donut_options.index(default_donut) if default_donut and default_donut in all_donut_options else 0
+        if all_donut_options:
+            donut_col = st.selectbox(
+                "Distribution by",
+                options=all_donut_options,
+                index=default_idx,
+                key="pbi_donut_col",
+            )
             value_counts = pbi_df[donut_col].value_counts().head(10).reset_index()
             value_counts.columns = [donut_col, "count"]
             fig_pbi_donut = px.pie(

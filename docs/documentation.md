@@ -4,7 +4,9 @@
 ## **Students Name:
 
  Rana khaled alnefary:  202220242 
+ 
   Mohmmad ahmad alnaimi: 202210057
+  
   Aya mohmmad alffayez: 202120586
 
 Supervisor: Dr. Husam Barham 
@@ -15,56 +17,107 @@ Semester: Second 20252/20256
 ## **TABLE OF CONTENTS
 	i
 STUDENTS' PROPERTY RIGHT DECLARATION AND ANTI-PLAGIARISM STATEMENT	i
+
 LIST OF TABLES	iv
+
 LIST OF FIGURES	v
+
 ABSTRACT	vi
+
 CHAPTER 1: INTRODUCTION	1
+
 1.1.	Introduction to the Topic	1
+
 1.2.	Problem Statement	1
+
 1.3.	Objectives and Goals	1
+
 1.4.	Literature Review or Background Research	2
+
 1.5.	Project Scope and Limitations	3
+
 1.6.	Methodology Overview	3
+
 1.7.	Stakeholders and Impact	4
+
 1.8.	Project Timeline and Milestones	4
+
 CHAPTER 2: BACKGROUND	5
+
 2.1. Problem Overview	5
+
 2.2. Problem Context	5
+
 2.3. Target Market	6
+
 2.4. Ethical and / Environmental Issues	6
+
 2.5. Previous Studies	6
+
 2.6. Implications for the Project	7
+
 2.7. Summary of Background	7
+
 CHAPTER 3: PROJECT METHODOLOGY	8
+
 3.1. Planning Phase (Waterfall Approach)	8
+
 3.2. Data Collection and Preparation (Waterfall Approach)	8
+
 3.3. Agile Approach Exploratory Data Analysis (EDA)	9
+
 3.4. Model Development (Agile Approach)	9
+
 3.5. Implementation and Reporting (Waterfall Approach)	9
+
 3.6. Advantages of a Hybrid Approach	10
+
 CHAPTER 4: DATA ENGINEERING	11
+
 4.1. Data Engineering Overview	11
+
 4.2. Data Engineering Importance	11
+
 4.3. Data Collection	11
+
 4.4. Data Cleaning	11
+
 4.5. Data Transformation	11
+
 4.6. Data Splitting	12
+
 4.7. Data Formatting	12
+
 CHAPTER 5: EXPLORATORY DATA ANALYSIS (EDA)	13
+
 5.1. Descriptive Analysis	13
+
 5.2. Hypothesis Testing	14
+
 5.3. Pivot Tables and Charts	15
+
 CHAPTER 6: DATA ANALYTICS	16
+
 6.1. Models and Evaluation	16
+
 6.2. Deployment	17
+
 CHAPTER 7: RESULTS AND INTERPRETATIONS	18
+
 7.1. Insights	18
+
 7.2. Business Implications	18
+
 CHAPTER 8: CONCLUSION AND FUTURE WORK	19
+
 8.1. Summary of Findings	19
+
 8.2. Recommendations	19
+
 8.3. Future Work	20
+
 References	21
+
 
 **
 

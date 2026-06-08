@@ -173,7 +173,7 @@ The hospitality industry generates large volumes of booking data through hotel r
 
 This project aims to develop an AI-Based Hotel Booking Business Intelligence and Analytics System that enables users to analyze hotel booking data, generate visualizations, identify trends, and support data-driven decision-making. The system combines Business Intelligence concepts with Artificial Intelligence technologies to improve data understanding and business performance evaluation.
 
-A hotel booking dataset containing 120,000 records was utilized. Data cleaning and preprocessing techniques were applied to improve data quality and prepare the dataset for analysis. Various visualization techniques including descriptive statistics, histograms, scatter plots, correlation analysis, and time-series analysis were implemented.
+A hotel booking dataset containing 128,000 records was utilized. Data cleaning and preprocessing techniques were applied to improve data quality and prepare the dataset for analysis. Various visualization techniques including descriptive statistics, histograms, scatter plots, correlation analysis, and time-series analysis were implemented.
 
 An interactive web application was developed using Streamlit, allowing users to upload datasets, perform cleaning operations, explore analytical dashboards, and generate AI-powered insights. The system also provides recommendations for dashboard design and business performance evaluation.
 

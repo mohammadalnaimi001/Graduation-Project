@@ -273,7 +273,7 @@ ________________________________________________________________________________
 
 ### **Dataset Overview**
 
-After cleaning, the dataset contained 120,000 hotel booking records and 17 attributes.
+After cleaning, the dataset contained 128,000 hotel booking records and 17 attributes.
 
 Each record represents a hotel reservation and contains information related to pricing, booking behavior, customer ratings, room types, and booking platforms.
 
@@ -357,9 +357,9 @@ These transformations included:
 
 | Metric            | Before Cleaning | After Cleaning |
 | ----------------- | --------------- | -------------- |
-| Records           | 128,000         | 120,000        |
-| Missing Values    | 197,773         | 0              |
-| Duplicate Records | 8,000           | 0              |
+| Records           | 128,000         | 128,000        |
+| Missing Values    | 16,732          | 0              |
+| Duplicate Records | 0               | 0              |
 
 The cleaning process significantly improved dataset quality and prepared the data for reliable analytical activities.
 

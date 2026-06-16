@@ -237,9 +237,9 @@ These transformations included:
 
 4.6. Data Quality Improvement Results
 Metric	Before Cleaning	After Cleaning
-Records	128,000	120,000
-Missing Values	197,773	0
-Duplicate Records	8,000	0
+Records	128,000	
+Missing Values	16,732	0
+Duplicate Records	0
 The cleaning process significantly improved dataset quality and prepared the data for reliable analytical activities.
 **
 
